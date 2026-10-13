@@ -6,8 +6,9 @@ Laravel ile geliştirilmiş basit bir ürün yönetim uygulaması. Kullanıcıla
 
 - PHP 8.3
 - Laravel 12
-- MySQL
-- Docker / Laravel Sail
+- MySQL 8.0
+- Nginx
+- Docker
 
 ## Kurulum
 
@@ -30,32 +31,43 @@ cd kle
 cp .env.example .env
 ```
 
-3. Docker container'larını başlatın:
+3. `.env` dosyasında veritabanı ayarlarını güncelleyin:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=kle
+DB_USERNAME=kle_user
+DB_PASSWORD=secret
+```
+
+4. Docker container'larını başlatın:
 
 ```bash
-./vendor/bin/sail up -d
+docker compose up -d --build
 ```
 
-4. Uygulama anahtarını oluşturun:
+5. Uygulama anahtarını oluşturun:
 
 ```bash
-./vendor/bin/sail artisan key:generate
+docker compose exec app php artisan key:generate
 ```
 
-5. Veritabanı tablolarını oluşturun:
+6. Veritabanı tablolarını oluşturun:
 
 ```bash
-./vendor/bin/sail artisan migrate
+docker compose exec app php artisan migrate
 ```
 
-6. Tarayıcıda açın:
+7. Tarayıcıda açın:
 
 ```
-http://localhost
+http://localhost:8000
 ```
 
 ## Durdurma
 
 ```bash
-./vendor/bin/sail down
+docker compose down
 ```
