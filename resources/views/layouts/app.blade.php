@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'kle - Ürün Yönetim Sistemi')</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css?v={{ file_exists(public_path('css/style.css')) ? filemtime(public_path('css/style.css')) : time() }}">
     @yield('styles')
 </head>
 <body>
@@ -64,6 +64,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             document.querySelectorAll('.toggle-password').forEach(function (btn) {
+                btn.setAttribute('tabindex', '-1');
                 btn.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('data-target');
@@ -107,6 +108,18 @@
                             e.preventDefault();
                             email.focus();
                         }
+                    }
+                });
+            }
+
+            // Kayıt sayfasında Şifre kutusunda Enter'a basınca Şifre Tekrarı kutusuna odaklan
+            const passwordInput = document.getElementById('password');
+            const passwordConfirmInput = document.getElementById('password_confirmation');
+            if (passwordInput && passwordConfirmInput) {
+                passwordInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        passwordConfirmInput.focus();
                     }
                 });
             }
