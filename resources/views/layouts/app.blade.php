@@ -11,12 +11,7 @@
     <!-- Navbar -->
     <header class="navbar">
         <div class="navbar-container">
-            <a href="/" class="brand">
-                <span class="brand-icon">k</span>
-                <span>kle</span>
-            </a>
-
-            <nav class="nav-menu">
+            <nav class="nav-menu" style="margin-left: auto;">
                 @auth
                     <div class="user-badge">
                         <span class="user-avatar">{{ substr(Auth::user()->name, 0, 1) }}</span>
