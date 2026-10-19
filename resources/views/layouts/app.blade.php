@@ -66,6 +66,29 @@
         <p>&copy; {{ date('Y') }} <strong>kle</strong>. Tüm hakları saklıdır.</p>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.querySelectorAll('.toggle-password').forEach(function (btn) {
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('data-target');
+                    const input = targetId ? document.getElementById(targetId) : this.closest('.password-wrapper').querySelector('input');
+                    if (!input) return;
+
+                    const isPassword = input.type === 'password';
+                    input.type = isPassword ? 'text' : 'password';
+
+                    const eyeOpen = this.querySelector('.eye-open');
+                    const eyeClosed = this.querySelector('.eye-closed');
+
+                    if (eyeOpen && eyeClosed) {
+                        eyeOpen.style.display = isPassword ? 'none' : 'block';
+                        eyeClosed.style.display = isPassword ? 'block' : 'none';
+                    }
+                });
+            });
+        });
+    </script>
     @yield('scripts')
 </body>
 </html>
