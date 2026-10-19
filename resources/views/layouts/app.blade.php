@@ -87,6 +87,34 @@
                     }
                 });
             });
+
+            // E-posta kutusunda Enter'a basınca Şifre kutusuna odaklan
+            const emailInput = document.getElementById('email');
+            if (emailInput) {
+                emailInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        const passwordInput = document.getElementById('password');
+                        if (passwordInput) {
+                            e.preventDefault();
+                            passwordInput.focus();
+                        }
+                    }
+                });
+            }
+
+            // Kayıt sayfasında İsim Soyisim kutusunda Enter'a basınca E-posta kutusuna odaklan
+            const fullNameInput = document.getElementById('full_name');
+            if (fullNameInput) {
+                fullNameInput.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        const email = document.getElementById('email');
+                        if (email) {
+                            e.preventDefault();
+                            email.focus();
+                        }
+                    }
+                });
+            }
         });
     </script>
     @yield('scripts')
