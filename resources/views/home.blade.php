@@ -5,7 +5,7 @@
 @section('content')
 <div class="dashboard-header">
     <div>
-        <h1 class="welcome-title">Hoş geldin, {{ Auth::user()->name }} 👋</h1>
+        <h1 class="welcome-title">Hoş geldin, {{ Auth::user()->name }}</h1>
         <p class="welcome-subtitle">Ürün yönetimi ve katalog işlemlerini bu panelden takip edebilirsiniz.</p>
     </div>
     <div>
@@ -33,8 +33,7 @@
         <div style="font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
             Hesap Durumu
         </div>
-        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 1.25rem; font-weight: 700; color: var(--success); margin-top: 0.35rem;">
-            <span style="width: 10px; height: 10px; border-radius: 50%; background: var(--success);"></span>
+        <div style="font-size: 1.25rem; font-weight: 700; color: var(--success); margin-top: 0.35rem;">
             Aktif Oturum
         </div>
         <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-subtle); margin-top: 0.25rem;">
