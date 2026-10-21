@@ -81,13 +81,20 @@
 
         const realEmail = emailText.getAttribute('data-email');
         const maskedEmail = '••••••••••••';
-        let isHidden = false;
+        let isHidden = localStorage.getItem('user_email_hidden') === 'true';
 
-        toggleBtn.addEventListener('click', function () {
-            isHidden = !isHidden;
+        function render() {
             emailText.textContent = isHidden ? maskedEmail : realEmail;
             eyeOpen.style.display = isHidden ? 'none' : 'inline';
             eyeClosed.style.display = isHidden ? 'inline' : 'none';
+        }
+
+        render();
+
+        toggleBtn.addEventListener('click', function () {
+            isHidden = !isHidden;
+            localStorage.setItem('user_email_hidden', isHidden ? 'true' : 'false');
+            render();
         });
     });
 </script>
