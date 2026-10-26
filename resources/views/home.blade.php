@@ -22,7 +22,7 @@
             Toplam Ürün
         </div>
         <div style="font-size: 1.75rem; font-weight: 700; color: var(--text-main);">
-            0
+            {{ $products->count() }}
         </div>
         <div style="font-size: 0.8125rem; color: var(--text-subtle); margin-top: 0.25rem;">
             Katalogda kayıtlı ürün sayısı
@@ -55,19 +55,37 @@
 <div class="card">
     <div class="card-header">
         <h2 style="font-size: 1.125rem; margin: 0;">Ürün Kataloğu</h2>
-        <span style="font-size: 0.8125rem; color: var(--text-muted);">0 Ürün</span>
+        <span style="font-size: 0.8125rem; color: var(--text-muted);">{{ $products->count() }} Ürün</span>
     </div>
 
     <div class="card-body">
-        <div class="empty-state">
-            <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-            <h3>Henüz Eklenmiş Ürün Yok</h3>
-            <p>Sisteme yeni ürünler eklediğinizde bu vitrinde listelenecek, düzenlenebilecek ve incelenebilecek.</p>
-        </div>
+        @if ($products->count() > 0)
+            <div class="product-grid">
+                @foreach ($products as $product)
+                    <div class="product-card">
+                        <div>
+                            <div class="product-title">{{ $product->name }}</div>
+                            <div class="product-price">{{ number_format($product->price, 2, ',', '.') }} ₺</div>
+                            <p class="product-desc">{{ Str::limit($product->description, 100) }}</p>
+                        </div>
+                        <div class="product-footer">
+                            <span>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong></span>
+                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary btn-sm">İncele</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="empty-state">
+                <svg class="empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+                <h3>Henüz Eklenmiş Ürün Yok</h3>
+                <p>Sisteme yeni ürünler eklediğinizde bu vitrinde listelenecek, düzenlenebilecek ve incelenebilecek.</p>
+            </div>
+        @endif
     </div>
 </div>
 
