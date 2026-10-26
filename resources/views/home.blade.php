@@ -49,6 +49,9 @@
                 </svg>
             </button>
         </div>
+        <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.35rem;">
+            ID: <span style="font-family: monospace; color: var(--text-muted);">{{ Auth::user()->user_code ?? 'Tanımlanmadı' }}</span>
+        </div>
     </div>
 </div>
 
@@ -69,7 +72,12 @@
                             <p class="product-desc">{{ Str::limit($product->description, 100) }}</p>
                         </div>
                         <div class="product-footer">
-                            <span>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong></span>
+                            <div style="font-size: 0.8125rem;">
+                                <div>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong> @if($product->user && $product->user->user_code)<span style="color: var(--text-subtle); font-size: 0.75rem;">({{ $product->user->user_code }})</span>@endif</div>
+                                @if($product->user)
+                                    <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.15rem;">{{ $product->user->email }}</div>
+                                @endif
+                            </div>
                             <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary btn-sm">İncele</a>
                         </div>
                     </div>

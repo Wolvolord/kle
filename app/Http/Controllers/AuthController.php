@@ -23,14 +23,27 @@ class AuthController extends Controller
         ]);
 
         $user = User::create([
-            'name'     => $request->full_name,
-            'email'    => $request->email,
-            'password' => Hash::make($request->password),
+            'user_code' => $this->generateUserCode(),
+            'name'      => $request->full_name,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
         ]);
 
         Auth::login($user);
 
         return redirect('/');
+    }
+
+    private function generateUserCode(): string
+    {
+        do {
+            $code = (string) random_int(1, 9);
+            for ($i = 0; $i < 18; $i++) {
+                $code .= random_int(0, 9);
+            }
+        } while (User::where('user_code', $code)->exists());
+
+        return $code;
     }
 
     public function loginForm()
