@@ -72,12 +72,7 @@
                             <p class="product-desc">{{ Str::limit($product->description, 100) }}</p>
                         </div>
                         <div class="product-footer">
-                            <div style="font-size: 0.8125rem;">
-                                <div>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong> @if($product->user && $product->user->user_code)<span style="color: var(--text-subtle); font-size: 0.75rem;">({{ $product->user->user_code }})</span>@endif</div>
-                                @if($product->user)
-                                    <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.15rem;">{{ $product->user->email }}</div>
-                                @endif
-                            </div>
+                            <span>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong> @if($product->user && $product->user->user_code)<span style="color: var(--text-subtle); font-size: 0.75rem;">({{ $product->user->user_code }})</span>@endif</span>
                             <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary btn-sm">İncele</a>
                         </div>
                     </div>
