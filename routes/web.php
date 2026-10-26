@@ -16,4 +16,3 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('home');
     Route::resource('products', ProductController::class)->except(['index']);
 });
-Route::resource('products', ProductController::class)
