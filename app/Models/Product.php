@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['user_id', 'name', 'price', 'description'])]
+#[Fillable(['product_code', 'user_id', 'name', 'price', 'description'])]
 class Product extends Model
 {
     use HasFactory;
+
+    public function getRouteKeyName()
+    {
+        return 'product_code';
+    }
 
     public function user()
     {

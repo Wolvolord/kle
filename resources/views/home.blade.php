@@ -73,7 +73,7 @@
                         </div>
                         <div class="product-footer">
                             <span>Ekleyen: <strong>{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong> @if($product->user && $product->user->user_code)<span style="color: var(--text-subtle); font-size: 0.75rem;">({{ $product->user->user_code }})</span>@endif</span>
-                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary btn-sm">İncele</a>
+                            <a href="{{ route('products.show', $product->product_code ?? $product->id) }}" class="btn btn-secondary btn-sm">İncele</a>
                         </div>
                     </div>
                 @endforeach
