@@ -10,7 +10,6 @@
     @yield('styles')
 </head>
 <body>
-    <!-- Navbar -->
     <header class="navbar">
         <div class="navbar-container">
             <nav class="nav-menu" style="margin-left: auto;">
@@ -31,34 +30,34 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <main class="main-content">
-        {{-- Flash Mesajları --}}
-        @if (session('success'))
-            <div class="alert alert-success">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                <div>{{ session('success') }}</div>
-            </div>
-        @endif
-
-        @if (session('warning'))
-            <div class="alert alert-warning">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-                <div>{{ session('warning') }}</div>
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
-                <div>{{ session('error') }}</div>
-            </div>
-        @endif
+        @foreach (['success', 'warning', 'error'] as $type)
+            @if (session($type))
+                @switch($type)
+                    @case('success')
+                        <div class="alert alert-success">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                            <div>{{ session($type) }}</div>
+                        </div>
+                        @break
+                    @case('warning')
+                        <div class="alert alert-warning">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                            <div>{{ session($type) }}</div>
+                        </div>
+                        @break
+                    @default
+                        <div class="alert alert-danger">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+                            <div>{{ session($type) }}</div>
+                        </div>
+                @endswitch
+            @endif
+        @endforeach
 
         @yield('content')
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <p>&copy; {{ date('Y') }} <strong>kle</strong>. Tüm hakları saklıdır.</p>
     </footer>
@@ -86,7 +85,6 @@
                 });
             });
 
-            // E-posta kutusunda Enter'a basınca Şifre kutusuna odaklan
             const emailInput = document.getElementById('email');
             if (emailInput) {
                 emailInput.addEventListener('keydown', function (e) {
@@ -100,7 +98,6 @@
                 });
             }
 
-            // Kayıt sayfasında İsim Soyisim kutusunda Enter'a basınca E-posta kutusuna odaklan
             const fullNameInput = document.getElementById('full_name');
             if (fullNameInput) {
                 fullNameInput.addEventListener('keydown', function (e) {
@@ -114,7 +111,6 @@
                 });
             }
 
-            // Kayıt sayfasında Şifre kutusunda Enter'a basınca Şifre Tekrarı kutusuna odaklan
             const passwordInput = document.getElementById('password');
             const passwordConfirmInput = document.getElementById('password_confirmation');
             if (passwordInput && passwordConfirmInput) {

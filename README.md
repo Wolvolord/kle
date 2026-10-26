@@ -4,7 +4,7 @@ Laravel ile geliştirilmiş basit bir ürün yönetim uygulaması. Kullanıcıla
 
 ## Kullanılan Teknolojiler
 
-- PHP 8.3
+- PHP 8.4
 - Laravel 12
 - MySQL 8.0
 - Nginx
