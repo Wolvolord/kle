@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,6 +31,8 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        ActivityLog::record('register', "'{$user->name}' sisteme kaydoldu.", 'User', $user->id, $user->name);
 
         return redirect('/');
     }
@@ -62,6 +65,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            $user = Auth::user();
+            ActivityLog::record('login', "'{$user->name}' oturum açtı.", 'User', $user->id, $user->name);
+
             return redirect('/');
         }
 
@@ -72,6 +79,11 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        $user = Auth::user();
+        if ($user) {
+            ActivityLog::record('logout', "'{$user->name}' oturumu kapattı.", 'User', $user->id, $user->name);
+        }
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

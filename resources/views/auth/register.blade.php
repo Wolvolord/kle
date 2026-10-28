@@ -6,6 +6,9 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-header">
+            <div style="margin-bottom: 0.75rem;">
+                <img src="/images/logo.png" alt="kle" style="height: 52px; width: auto; object-fit: contain;">
+            </div>
             <h1>Hesap Oluştur</h1>
             <p>Aramıza katılmak için formu doldurun</p>
         </div>

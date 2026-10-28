@@ -6,6 +6,9 @@
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-header">
+            <div style="margin-bottom: 0.75rem;">
+                <img src="/images/logo.png" alt="kle" style="height: 52px; width: auto; object-fit: contain;">
+            </div>
             <h1>Giriş Yap</h1>
             <p>Hesabınıza erişmek için bilgilerinizi girin</p>
         </div>

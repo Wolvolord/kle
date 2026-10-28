@@ -141,9 +141,9 @@ a:hover {
 }
 
 .navbar-container {
-  max-width: 1120px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -207,10 +207,10 @@ a:hover {
 /* Layout Containers */
 .main-content {
   flex: 1;
-  max-width: 1120px;
+  max-width: 1280px;
   width: 100%;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem;
+  padding: 2.5rem 2rem;
 }
 
 /* Auth Pages Centering */
@@ -306,7 +306,10 @@ a:hover {
 
 textarea.form-control {
   resize: vertical;
-  min-height: 100px;
+  min-height: 180px;
+  line-height: 1.6;
+  font-size: 0.9375rem;
+  padding: 0.875rem 1rem;
 }
 
 /* Password Toggle Wrapper */
@@ -508,25 +511,26 @@ textarea.form-control {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.75rem;
 }
 
 .product-card {
   background: var(--bg-surface);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: var(--transition);
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.05);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .product-card:hover {
   border-color: #cbd5e1;
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.06);
+  transform: translateY(-3px);
 }
 
 .product-title {
@@ -534,6 +538,7 @@ textarea.form-control {
   font-weight: 700;
   color: var(--text-main);
   margin-bottom: 0.375rem;
+  line-height: 1.35;
 }
 
 .product-price {
@@ -546,8 +551,13 @@ textarea.form-control {
 .product-desc {
   font-size: 0.875rem;
   color: var(--text-muted);
-  line-height: 1.5;
-  margin-bottom: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
   flex: 1;
 }
 
