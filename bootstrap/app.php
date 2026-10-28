@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             session()->flash('warning', 'Verileri görmek için giriş yapmalısınız.');
             return route('login');
         });
+        $middleware->redirectUsersTo(fn () => '/');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

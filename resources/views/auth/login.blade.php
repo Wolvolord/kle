@@ -67,7 +67,21 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block" style="margin-top: 1rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+                <label for="remember" style="display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; font-size: 0.875rem; color: var(--text-muted);">
+                    <input 
+                        type="checkbox" 
+                        name="remember" 
+                        id="remember" 
+                        value="1" 
+                        style="width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer;"
+                        {{ old('remember', true) ? 'checked' : '' }}
+                    >
+                    <span>Beni Hatırla</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
                 Giriş Yap
             </button>
         </form>

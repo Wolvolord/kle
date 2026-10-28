@@ -12,6 +12,10 @@ class AuthController extends Controller
 {
     public function registerForm()
     {
+        if (Auth::check()) {
+            return redirect('/');
+        }
+
         return view('auth.register');
     }
 
@@ -30,7 +34,7 @@ class AuthController extends Controller
             'password'  => Hash::make($request->password),
         ]);
 
-        Auth::login($user);
+        Auth::login($user, true);
 
         ActivityLog::record('register', "'{$user->name}' sisteme kaydoldu.", 'User', $user->id, $user->name);
 
@@ -51,6 +55,10 @@ class AuthController extends Controller
 
     public function loginForm()
     {
+        if (Auth::check()) {
+            return redirect('/');
+        }
+
         return view('auth.login');
     }
 
@@ -62,19 +70,20 @@ class AuthController extends Controller
         ]);
 
         $credentials = $request->only('email', 'password');
+        $remember = $request->boolean('remember');
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
             $user = Auth::user();
             ActivityLog::record('login', "'{$user->name}' oturum açtı.", 'User', $user->id, $user->name);
 
-            return redirect('/');
+            return redirect()->intended('/');
         }
 
         return back()->withErrors([
             'email' => 'E-posta veya şifre hatalı.',
-        ]);
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)
