@@ -108,8 +108,9 @@
                                 class="form-control" 
                                 accept="image/png, image/jpeg, image/jpg, image/webp"
                             >
+                            <div id="image-size-error" style="display: none; color: #dc2626; font-size: 0.8125rem; font-weight: 500; margin-top: 0.4rem;"></div>
                             <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.35rem;">
-                                Yeni görsel seçerseniz eski görsel otomatik silinerek güncellenecektir.
+                                Maksimum 10 MB dosya yükleyebilirsiniz. Yeni görsel seçerseniz eski görsel güncellenir.
                             </div>
                         </div>
                     </div>
@@ -252,9 +253,53 @@
         }
 
         if (imgInput) {
+            const sizeError = document.getElementById('image-size-error');
+            const MAX_SIZE = 10 * 1024 * 1024; // 10 MB
+            const originalFormSrc = formPreviewImg ? formPreviewImg.src : '';
+            const originalCardSrc = previewCardImg ? previewCardImg.src : '';
+            const formHadImg = formPreviewImg && formPreviewImg.style.display !== 'none' && originalFormSrc;
+            const cardHadImg = previewCardImg && previewCardImg.style.display !== 'none' && originalCardSrc;
+
             imgInput.addEventListener('change', function () {
+                if (sizeError) {
+                    sizeError.style.display = 'none';
+                    sizeError.textContent = '';
+                }
+
                 const file = this.files[0];
                 if (file) {
+                    if (file.size > MAX_SIZE) {
+                        const sizeMB = (file.size / (1024 * 1024)).toFixed(2);
+                        if (sizeError) {
+                            sizeError.textContent = `Seçilen görsel (${sizeMB} MB) çok büyük! Lütfen en fazla 10 MB boyutunda bir görsel yükleyin.`;
+                            sizeError.style.display = 'block';
+                        }
+                        this.value = '';
+
+                        // Reset to original preview
+                        if (formPreviewImg) {
+                            if (formHadImg) {
+                                formPreviewImg.src = originalFormSrc;
+                                formPreviewImg.style.display = 'block';
+                                if (formPlaceholderIcon) formPlaceholderIcon.style.display = 'none';
+                            } else {
+                                formPreviewImg.style.display = 'none';
+                                if (formPlaceholderIcon) formPlaceholderIcon.style.display = 'block';
+                            }
+                        }
+                        if (previewCardImg) {
+                            if (cardHadImg) {
+                                previewCardImg.src = originalCardSrc;
+                                previewCardImg.style.display = 'block';
+                                if (previewCardPlaceholder) previewCardPlaceholder.style.display = 'none';
+                            } else {
+                                previewCardImg.style.display = 'none';
+                                if (previewCardPlaceholder) previewCardPlaceholder.style.display = 'block';
+                            }
+                        }
+                        return;
+                    }
+
                     const reader = new FileReader();
                     reader.onload = function (e) {
                         if (previewCardImg) {

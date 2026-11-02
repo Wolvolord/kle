@@ -28,7 +28,7 @@ class ProductController extends Controller
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0.01|max:10000000',
             'description' => 'required|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ], [
             'name.required'        => 'Ürün adı zorunludur.',
             'name.max'             => 'Ürün adı en fazla 255 karakter olabilir.',
@@ -39,7 +39,7 @@ class ProductController extends Controller
             'description.required' => 'Ürün açıklaması zorunludur.',
             'image.image'          => 'Yüklenen dosya geçerli bir görsel olmalıdır.',
             'image.mimes'          => 'Görsel formatı jpeg, png, jpg veya webp olmalıdır.',
-            'image.max'            => 'Görsel boyutu en fazla 2 MB olabilir.',
+            'image.max'            => 'Görsel boyutu en fazla 10 MB olabilir.',
         ]);
 
         if ($request->hasFile('image')) {
@@ -99,7 +99,7 @@ class ProductController extends Controller
             'name'        => 'required|string|max:255',
             'price'       => 'required|numeric|min:0.01|max:10000000',
             'description' => 'required|string',
-            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,webp|max:10240',
         ], [
             'name.required'        => 'Ürün adı zorunludur.',
             'name.max'             => 'Ürün adı en fazla 255 karakter olabilir.',
@@ -110,7 +110,7 @@ class ProductController extends Controller
             'description.required' => 'Ürün açıklaması zorunludur.',
             'image.image'          => 'Yüklenen dosya geçerli bir görsel olmalıdır.',
             'image.mimes'          => 'Görsel formatı jpeg, png, jpg veya webp olmalıdır.',
-            'image.max'            => 'Görsel boyutu en fazla 2 MB olabilir.',
+            'image.max'            => 'Görsel boyutu en fazla 10 MB olabilir.',
         ]);
 
         $oldValues = [
