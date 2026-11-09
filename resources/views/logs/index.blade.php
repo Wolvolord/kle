@@ -78,32 +78,33 @@
                 </a>
             </div>
 
-            <form class="logs-search-form" method="GET" action="{{ route('logs.index') }}" style="margin: 0; display: flex; gap: 0.5rem; align-items: center;">
+            <form class="logs-search-form" method="GET" action="{{ route('logs.index') }}">
                 @if(request('action'))
                     <input type="hidden" name="action" value="{{ request('action') }}">
                 @endif
-                <div class="logs-search-input-wrapper" style="position: relative;">
+                <div class="logs-search-input-wrapper">
                     <input 
                         type="text" 
                         name="q" 
                         value="{{ request('q') }}" 
                         placeholder="Loglarda veya kullanıcıda ara..." 
                         class="form-control logs-search-input" 
-                        style="padding: 0.45rem 0.75rem 0.45rem 2rem; font-size: 0.8125rem; width: 240px;"
                     >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0.65rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
                 </div>
-                <button type="submit" class="btn btn-secondary btn-sm" style="padding: 0.45rem 0.75rem;">
-                    Filtrele
-                </button>
-                @if(request('q') || (request('action') && request('action') !== 'all'))
-                    <a href="{{ route('logs.index') }}" class="btn btn-secondary btn-sm" style="padding: 0.45rem 0.75rem; color: var(--text-muted);">
-                        Sıfırla
-                    </a>
-                @endif
+                <div class="logs-search-btn-group">
+                    <button type="submit" class="btn btn-secondary btn-sm">
+                        Filtrele
+                    </button>
+                    @if(request('q') || (request('action') && request('action') !== 'all'))
+                        <a href="{{ route('logs.index') }}" class="btn btn-secondary btn-sm" style="color: var(--text-muted);">
+                            Sıfırla
+                        </a>
+                    @endif
+                </div>
             </form>
         </div>
 

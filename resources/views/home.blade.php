@@ -30,9 +30,9 @@
         <div style="font-size: 1.25rem; font-weight: 700; color: var(--success); margin-top: 0.35rem;">
             Aktif Oturum
         </div>
-        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-subtle); margin-top: 0.35rem;">
-            <span id="user-email-text" data-email="{{ Auth::user()->email }}">{{ Auth::user()->email }}</span>
-            <button type="button" id="toggle-email-btn" style="background: none; border: none; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; padding: 2px;" aria-label="E-postayı Gizle/Göster">
+        <div style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8125rem; color: var(--text-subtle); margin-top: 0.35rem; flex-wrap: wrap;">
+            <span id="user-email-text" data-email="{{ Auth::user()->email }}" style="word-break: break-all;">{{ Auth::user()->email }}</span>
+            <button type="button" id="toggle-email-btn" style="background: none; border: none; cursor: pointer; color: var(--text-muted); display: inline-flex; align-items: center; padding: 2px; flex-shrink: 0;" aria-label="E-postayı Gizle/Göster">
                 <svg id="email-eye-open" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                     <circle cx="12" cy="12" r="3"></circle>
@@ -43,8 +43,8 @@
                 </svg>
             </button>
         </div>
-        <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.35rem;">
-            Kullanıcı Kodu: <span style="font-family: monospace; color: var(--text-muted);">{{ Auth::user()->user_code ?? 'Tanımlanmadı' }}</span>
+        <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 0.35rem; word-break: break-all;">
+            Kullanıcı Kodu: <span style="font-family: monospace; color: var(--text-muted); word-break: break-all;">{{ Auth::user()->user_code ?? 'Tanımlanmadı' }}</span>
         </div>
     </div>
 </div>
@@ -84,16 +84,16 @@
                                 </div>
                             @endif
 
-                            <div class="product-title">{{ $product->name }}</div>
+                            <div class="product-title" style="word-break: break-word;">{{ $product->name }}</div>
                             <div class="product-price">{{ number_format($product->price, 2, ',', '.') }} ₺</div>
-                            <p class="product-desc">{{ $product->description }}</p>
+                            <p class="product-desc" style="word-break: break-word;">{{ $product->description }}</p>
                         </div>
 
-                        <div class="product-footer">
-                            <span style="font-size: 0.75rem; color: var(--text-subtle);">
+                        <div class="product-footer" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+                            <span style="font-size: 0.75rem; color: var(--text-subtle); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 170px;">
                                 Ekleyen: <strong style="color: var(--text-main);">{{ $product->user ? $product->user->name : 'Bilinmiyor' }}</strong>
                             </span>
-                            <a href="{{ route('products.show', $product->product_code ?? $product->id) }}" class="btn btn-secondary btn-sm">
+                            <a href="{{ route('products.show', $product->product_code ?? $product->id) }}" class="btn btn-secondary btn-sm" style="flex-shrink: 0;">
                                 İncele
                             </a>
                         </div>

@@ -100,7 +100,7 @@
                                 <img id="image-preview" src="" alt="Önizleme" style="display: none; width: 100%; height: 100%; object-fit: cover;">
                             @endif
                         </div>
-                        <div style="flex: 1;">
+                        <div class="image-upload-input-box" style="flex: 1; min-width: 0; width: 100%;">
                             <input 
                                 type="file" 
                                 id="image" 

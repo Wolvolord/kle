@@ -13,32 +13,62 @@
 <body>
     <header class="navbar">
         <div class="navbar-container">
-            <a href="{{ route('home') }}" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none;">
-                <img src="/images/logo.png" alt="kle" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; transition: transform 0.2s ease;">
-            </a>
+            <div class="navbar-brand-row">
+                <a href="{{ route('home') }}" class="brand-logo-link" style="display: inline-flex; align-items: center; text-decoration: none;">
+                    <img src="/images/logo.png" alt="kle" class="brand-logo-img" style="height: 38px; width: auto; object-fit: contain; transition: transform 0.2s ease;">
+                </a>
+
+                @auth
+                    <div class="nav-user-mobile">
+                        <div class="user-badge" title="{{ Auth::user()->name }}">
+                            <span class="user-avatar">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            <span class="user-name">{{ Auth::user()->name }}</span>
+                        </div>
+                        <form method="POST" action="/logout" style="margin: 0;">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary btn-sm nav-btn-logout">Çıkış</button>
+                        </form>
+                    </div>
+                @else
+                    <div class="nav-guest-mobile">
+                        <a href="/login" class="btn btn-secondary btn-sm">Giriş</a>
+                        <a href="/register" class="btn btn-primary btn-sm">Kayıt Ol</a>
+                    </div>
+                @endauth
+            </div>
 
             <nav class="nav-menu">
                 @auth
-                    <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" style="font-size: 0.875rem; color: {{ request()->routeIs('home') ? 'var(--text-main)' : 'var(--text-muted)' }}; font-weight: {{ request()->routeIs('home') ? '600' : '500' }}; text-decoration: none; padding: 0.25rem 0.5rem;">Katalog</a>
-                    <a href="{{ route('logs.index') }}" class="nav-link {{ request()->routeIs('logs.index') ? 'active' : '' }}" style="font-size: 0.875rem; color: {{ request()->routeIs('logs.index') ? 'var(--text-main)' : 'var(--text-muted)' }}; font-weight: {{ request()->routeIs('logs.index') ? '600' : '500' }}; text-decoration: none; padding: 0.25rem 0.5rem; display: inline-flex; align-items: center; gap: 0.35rem;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-                        Loglar
-                    </a>
-                    <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm nav-btn-create" style="display: inline-flex; align-items: center; gap: 0.35rem;">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-                        <span class="nav-btn-text">Yeni Ürün</span>
-                    </a>
-                    <div class="user-badge">
-                        <span class="user-avatar">{{ substr(Auth::user()->name, 0, 1) }}</span>
-                        <span class="user-name">{{ Auth::user()->name }}</span>
+                    <div class="nav-links">
+                        <a href="{{ route('home') }}" class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                            <span>Katalog</span>
+                        </a>
+                        <a href="{{ route('logs.index') }}" class="nav-link {{ request()->routeIs('logs.index') ? 'active' : '' }}">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                            <span>Loglar</span>
+                        </a>
+                        <a href="{{ route('products.create') }}" class="btn btn-primary btn-sm nav-btn-create">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            <span class="nav-btn-text">Yeni Ürün</span>
+                        </a>
                     </div>
-                    <form method="POST" action="/logout" style="margin: 0;">
-                        @csrf
-                        <button type="submit" class="btn btn-secondary btn-sm nav-btn-logout">Çıkış Yap</button>
-                    </form>
+
+                    <div class="nav-user-desktop">
+                        <div class="user-badge" title="{{ Auth::user()->name }}">
+                            <span class="user-avatar">{{ substr(Auth::user()->name, 0, 1) }}</span>
+                            <span class="user-name">{{ Auth::user()->name }}</span>
+                        </div>
+                        <form method="POST" action="/logout" style="margin: 0;">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary btn-sm nav-btn-logout">Çıkış Yap</button>
+                        </form>
+                    </div>
                 @else
-                    <a href="/login" class="btn btn-secondary btn-sm">Giriş Yap</a>
-                    <a href="/register" class="btn btn-primary btn-sm">Kayıt Ol</a>
+                    <div class="nav-guest-desktop">
+                        <a href="/login" class="btn btn-secondary btn-sm">Giriş Yap</a>
+                        <a href="/register" class="btn btn-primary btn-sm">Kayıt Ol</a>
+                    </div>
                 @endauth
             </nav>
         </div>
