@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+<div class="stats-grid">
     <div class="card" style="margin: 0; padding: 1.5rem;">
         <div style="font-size: 0.8125rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;">
             Toplam Ürün
@@ -49,8 +49,8 @@
     </div>
 </div>
 
-<div class="card" style="padding: 2rem;">
-    <div class="card-header" style="margin-bottom: 1.5rem; padding-bottom: 1rem;">
+<div class="card home-catalog-card">
+    <div class="card-header home-catalog-header">
         <div>
             <h2 style="font-size: 1.375rem; margin: 0 0 0.25rem 0; color: var(--text-main);">Ürün Kataloğu</h2>
             <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">Sistemde kayıtlı tüm ürünlerin güncel listesi</p>

@@ -11,7 +11,7 @@
         </a>
     </div>
 
-    <div class="card" style="padding: 2rem;">
+    <div class="card form-card">
         <div style="margin-bottom: 1.75rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
             <h1 style="font-size: 1.5rem; margin: 0 0 0.25rem 0; color: var(--text-main);">Yeni Ürün Ekle</h1>
             <p style="font-size: 0.875rem; color: var(--text-muted); margin: 0;">Kataloğa dahil etmek istediğiniz ürünün detaylarını ve görselini aşağıdan tanımlayabilirsiniz.</p>
@@ -33,7 +33,7 @@
         <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
             @csrf
 
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+            <div class="form-row-grid">
                 <div class="form-group" style="margin-bottom: 0;">
                     <label for="name" class="form-label">Ürün Adı</label>
                     <input 
@@ -85,7 +85,7 @@
 
             <div class="form-group" style="margin-bottom: 2rem;">
                 <label for="image" class="form-label">Ürün Görseli</label>
-                <div style="display: flex; gap: 1.25rem; align-items: center;">
+                <div class="image-upload-wrapper">
                     <div id="image-preview-container" style="width: 96px; height: 96px; border-radius: var(--radius-md); border: 2px dashed var(--border-light); background: var(--bg-subtle); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;">
                         <svg id="image-placeholder-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-subtle);">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            <div style="display: flex; align-items: center; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border-light);">
+            <div class="form-actions-wrapper">
                 <button type="submit" class="btn btn-primary">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                     Ürünü Kaydet

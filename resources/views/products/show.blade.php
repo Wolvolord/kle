@@ -11,8 +11,8 @@
         </a>
     </div>
 
-    <div class="card" style="padding: 2.5rem;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 3.5rem; align-items: start;">
+    <div class="card product-detail-card">
+        <div class="product-detail-grid">
             <div>
                 @if ($product->image)
                     <div style="border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border-light); background: var(--bg-subtle); aspect-ratio: 1; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
@@ -39,7 +39,7 @@
                             <strong style="color: var(--text-main);">{{ $product->product_code }}</strong>
                         </div>
                     @endif
-                    <h1 style="font-size: 2rem; margin: 0 0 0.75rem 0; color: var(--text-main); line-height: 1.25; word-break: break-word;">
+                    <h1 class="product-detail-title">
                         {{ $product->name }}
                     </h1>
                     <div style="font-size: 2rem; font-weight: 800; color: var(--accent); letter-spacing: -0.02em;">
@@ -56,7 +56,7 @@
                     </p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 2.25rem; background: var(--bg-main); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 1.25rem 1.5rem;">
+                <div class="product-info-grid">
                     <div>
                         <div style="font-size: 0.6875rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;">
                             Ekleyen Kullanıcı
@@ -84,7 +84,7 @@
                     </div>
                 </div>
 
-                <div style="margin-top: auto; display: flex; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
+                <div class="product-detail-actions">
                     <a href="{{ route('products.edit', $product->product_code ?? $product->id) }}" class="btn btn-secondary" style="flex: 1; padding: 0.75rem 1.25rem;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                         Ürünü Düzenle

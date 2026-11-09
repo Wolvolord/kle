@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+    <div class="logs-stats-grid">
         <div class="card" style="margin: 0; padding: 1.25rem;">
             <div style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.35rem;">
                 Toplam İşlem
@@ -56,8 +56,8 @@
     </div>
 
     <div class="card" style="padding: 0; overflow: hidden;">
-        <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--bg-surface);">
-            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+        <div class="logs-toolbar" style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; background: var(--bg-surface);">
+            <div class="logs-filter-pills" style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
                 @php
                     $currentAction = request('action', 'all');
                 @endphp
@@ -78,17 +78,17 @@
                 </a>
             </div>
 
-            <form method="GET" action="{{ route('logs.index') }}" style="margin: 0; display: flex; gap: 0.5rem; align-items: center;">
+            <form class="logs-search-form" method="GET" action="{{ route('logs.index') }}" style="margin: 0; display: flex; gap: 0.5rem; align-items: center;">
                 @if(request('action'))
                     <input type="hidden" name="action" value="{{ request('action') }}">
                 @endif
-                <div style="position: relative;">
+                <div class="logs-search-input-wrapper" style="position: relative;">
                     <input 
                         type="text" 
                         name="q" 
                         value="{{ request('q') }}" 
                         placeholder="Loglarda veya kullanıcıda ara..." 
-                        class="form-control" 
+                        class="form-control logs-search-input" 
                         style="padding: 0.45rem 0.75rem 0.45rem 2rem; font-size: 0.8125rem; width: 240px;"
                     >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 0.65rem; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;">
@@ -108,8 +108,8 @@
         </div>
 
         @if ($logs->count() > 0)
-            <div style="overflow-x: auto;">
-                <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
+            <div class="logs-table-wrapper" style="overflow-x: auto;">
+                <table class="logs-table" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 0.875rem;">
                     <thead>
                         <tr style="background: var(--bg-main); border-bottom: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;">
                             <th style="padding: 1rem 1.5rem; font-weight: 600;">İşlem</th>

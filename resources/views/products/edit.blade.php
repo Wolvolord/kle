@@ -24,8 +24,8 @@
         </div>
     @endif
 
-    <div style="display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.9fr); gap: 2rem; align-items: start;">
-        <div class="card" style="margin-bottom: 0; padding: 2rem;">
+    <div class="edit-page-grid">
+        <div class="card edit-form-card">
             <div style="margin-bottom: 1.75rem; border-bottom: 1px solid var(--border-light); padding-bottom: 1rem;">
                 <span style="font-size: 0.75rem; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.25rem;">Düzenleme Paneli</span>
                 <h1 style="font-size: 1.5rem; margin: 0; color: var(--text-main);">Ürün Bilgilerini Güncelle</h1>
@@ -35,7 +35,7 @@
                 @csrf
                 @method('PUT')
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem;">
+                <div class="form-row-grid">
                     <div class="form-group" style="margin-bottom: 0;">
                         <label for="name" class="form-label">Ürün Adı</label>
                         <input 
@@ -87,7 +87,7 @@
 
                 <div class="form-group" style="margin-bottom: 2rem;">
                     <label for="image" class="form-label">Ürün Görseli</label>
-                    <div style="display: flex; gap: 1.25rem; align-items: center;">
+                    <div class="image-upload-wrapper">
                         <div id="image-preview-container" style="width: 80px; height: 80px; border-radius: var(--radius-md); border: 2px dashed var(--border-light); background: var(--bg-subtle); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0;">
                             @if ($product->image)
                                 <img id="image-preview" src="{{ asset('storage/' . $product->image) }}" alt="Önizleme" style="width: 100%; height: 100%; object-fit: cover;">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
 
-                <div style="display: flex; align-items: center; gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid var(--border-light);">
+                <div class="form-actions-wrapper">
                     <button type="submit" class="btn btn-primary">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
                         Değişiklikleri Kaydet
